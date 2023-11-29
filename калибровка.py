@@ -3,9 +3,8 @@ import RPi.GPIO as GPIO
 import time
 import matplotlib.pyplot as plt
 
-def binary(n):  # перевод в двоичную сс
+def binary(n):  # перевод
     return [int(i) for i in bin(n)[2:].zfill(8)]
-
 
 def adc():  # ацп
     value = 0
@@ -25,10 +24,10 @@ GPIO.setup(dac, GPIO.OUT)
 GPIO.setup(troyka, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(comp, GPIO.IN)
 
-listADC = []
+ADC = []
 time_start = time.time()
-while (time.time() - time_start) <= 10:  #пока не пройдет хотя бы 10 секунд
-    listADC.append(3.3 - adc() / 256 * 3.3)
-list_str = [str(item) for item in listADC]
+while (time.time() - time_start) <= 10:  #пока не пройдет 10 секунд
+    ADC.append(3.3 - adc() / 256 * 3.3)
+list_string = [str(item) for item in ADC]
 with open('values_ADC_for_120mm_kalib.txt', 'w') as f:
-    f.write("\n".join(list_str))
+    f.write("\n".join(list_string))
