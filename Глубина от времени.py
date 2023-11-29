@@ -25,7 +25,7 @@ GPIO.setup(troyka, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(comp, GPIO.IN)
 GPIO.setup(21, GPIO.IN)
 listADC = []  # напряжение
-list_time = []  # моменты времени снятия напряжения
+list_time = []  # моменты времени падения напряжения
 L = float(input(" Введите длину от слива до проводника" ))# длина от проводника до слива из кюветы. снимаем вручную
 time.sleep(0.5)
 
@@ -38,7 +38,7 @@ while 1:  # отслеживает открытие крышки слива
 listADC.append(3.24 - adc() / 256 * 3.3)
 list_time.append(time.time() - timeStart)
 
-while 1:  # отслеживает момент, когда волна проходит через проводник, те момент понижения напряжения
+while 1:  # отслеживаем момент, когда волна проходит через проводник(момент понижения напряжения)
     time.sleep(0.04)
     listADC.append(3.24 - adc() / 256 * 3.3)
     list_time.append(time.time() - timeStart)
